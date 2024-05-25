@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   available:
   - {fileID: 11400000, guid: 2a30fab4ff441034ebb43747a1b6f307, type: 2}
-  material: {fileID: 2100000, guid: b42ef644e4df27944815566c7097c322, type: 2}
+  material: {fileID: 2100000, guid: 96faa7ab5f3386a4cb4708aaa5c3a9eb, type: 2}

@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
             for (int xValue = 0; xValue < 6; xValue++)
             {
                 int[] pos = { zValue, xValue };
-                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(row.transform.position.x + xValue + xOffset, row.transform.position.y, row.transform.position.z + zValue + yOffset), row.transform.rotation, row.transform);
+                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(row.transform.position.x + xValue + xOffset, row.transform.position.y, row.transform.position.z + zValue + yOffset), Quaternion.Euler(-90, 0, 0), row.transform);
                 generatedTerrain.gameObject.name = $"Terrain ({zValue}, {xValue})";
 
                 // Add the Terrain to the generated row
@@ -140,7 +140,6 @@ public class GameManager : MonoBehaviour
     {
         if (waterValue + value > 100) waterValue = 100;
         else waterValue += value;
-        Debug.Log(waterValue);
     }
 
     // Increases your food quantity
@@ -148,7 +147,6 @@ public class GameManager : MonoBehaviour
     {
         if (foodValue + value > 100) foodValue = 100;
         else foodValue += value;
-        Debug.Log(foodValue);
     }
 
     // Increases your happiness quantity
@@ -156,6 +154,5 @@ public class GameManager : MonoBehaviour
     {
         if (happyValue + value > 100) happyValue = 100;
         else happyValue += value;
-        Debug.Log(happyValue);
     }
 }
