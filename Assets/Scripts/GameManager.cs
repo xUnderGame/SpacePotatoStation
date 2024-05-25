@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         nTurns += num;
     }
 
-    public void SustractTurns(int num)
+    public void SubstractTurns(int num)
     {
         nTurns -= num;
     }
