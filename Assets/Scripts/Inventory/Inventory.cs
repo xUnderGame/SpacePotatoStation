@@ -15,18 +15,6 @@ public class InventorySlot {
 public class Inventory : MonoBehaviour
 {
     [SerializeField] public List<InventorySlot> slots = new List<InventorySlot>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AddItem(ScriptableSeed seed) 
     {
         if (ItemInInventory(seed)) 
