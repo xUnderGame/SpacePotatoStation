@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.TerrainTools.PaintContext;
 
 public class TerrainInteraction : MonoBehaviour
 {

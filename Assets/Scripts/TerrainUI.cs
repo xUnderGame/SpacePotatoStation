@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -11,6 +9,7 @@ public class TerrainUI : MonoBehaviour
     public TextMeshProUGUI plantStatus;
     public TextMeshProUGUI growthProgress;
     //public TextMeshProUGUI fertilize;
+
     void Start()
     {
         _cam = Camera.main;
