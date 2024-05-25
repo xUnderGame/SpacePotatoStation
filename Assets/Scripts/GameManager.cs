@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         plotObject = GameObject.Find("Plot");
 
         // Do plot
+        if (TerrainInfo) TerrainInfo.SetActive(false);
         plot = new(capacity: maxCapacity);
         GeneratePlot();
     }

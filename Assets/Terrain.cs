@@ -48,4 +48,15 @@ public class BaseTerrain : MonoBehaviour
         ren.material = terrainSB.material;
         available = terrainSB.available;
     }
+
+    // UI Events //
+    private void OnMouseEnter()
+    {
+        GameManager.Instance.TerrainInfo.SetActive(true);
+        GameManager.Instance.TerrainInfo.transform.position = new Vector3(transform.position.x, GameManager.Instance.TerrainInfo.transform.position.y, transform.position.z);
+    }
+    private void OnMouseExit()
+    {
+        GameManager.Instance.TerrainInfo.SetActive(false);
+    }
 }

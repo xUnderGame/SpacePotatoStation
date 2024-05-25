@@ -12,6 +12,7 @@ public class InventorySlot {
     public ScriptableSeed type;
     public int quantity;
 }
+
 public class Inventory : MonoBehaviour
 {
     [SerializeField] public List<InventorySlot> slots = new List<InventorySlot>();
