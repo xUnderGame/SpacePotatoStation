@@ -122,6 +122,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.59999996, y: 0.6000001, z: 0.6000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3702419951878998817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3526156072156645365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734d75db558483e4eb56a0e2b205fcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  available: []
+  growingPlant: {fileID: 0}
+  agent: {fileID: 0}
+  initialPos: 09000000f7ffffff
 --- !u!1 &5472942409482081611
 GameObject:
   m_ObjectHideFlags: 0
