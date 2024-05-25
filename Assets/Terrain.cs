@@ -110,7 +110,7 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData data)
     {
         // TESTING TESTING TESTING TESTING TESTING TESTING 
-        if (growingPlant != null) { growingPlant.status = Status.Completed; growingPlant.Effect(); }
+        if (growingPlant != null) { growingPlant.ChangeStatus(Status.Completed); growingPlant.Effect(); }
         else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed"));
     }
 }

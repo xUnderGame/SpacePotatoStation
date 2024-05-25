@@ -15,4 +15,4 @@ MonoBehaviour:
   available:
   - {fileID: 11400000, guid: 642ade0e194b7f04b89012c146921d0b, type: 2}
   - {fileID: 11400000, guid: 9ad69d1c9675d514989a61dfc411d978, type: 2}
-  material: {fileID: 2100000, guid: fd880d4f504fd654d806571fe4169328, type: 2}
+  material: {fileID: 2100000, guid: 53c29ad57bc42624b807e4b62f1a45a2, type: 2}

@@ -18,8 +18,16 @@ public abstract class Plant : MonoBehaviour
     internal int deathTimer = -1;
     internal Renderer ren;
 
+    // Models //
+    internal GameObject stageOne;
+    internal GameObject stageTwo;
+    internal GameObject stageThree;
+
     internal virtual void Start()
     {
+        stageOne = transform.Find("Initial").gameObject;
+        stageTwo = transform.Find("Growing").gameObject;
+        stageThree = transform.Find("Completed").gameObject;
         ren = GetComponent<Renderer>();
         status = Status.Initial;
         currentGrowthTime = 0;
@@ -33,4 +41,18 @@ public abstract class Plant : MonoBehaviour
 
     // Disable a plant
     public abstract void Disable();
+
+    // Change a plant's state
+    public void ChangeStatus(Status newStatus)
+    {
+        status = newStatus;
+
+        if (newStatus == Status.Decay) { ren.material.color = new Color(0.25f, 0.25f, 0.25f); return; }
+
+        // Cycle through models
+        stageOne.SetActive(false);
+        stageTwo.SetActive(false);
+        stageThree.SetActive(false);
+        transform.Find(newStatus.ToString()).gameObject.SetActive(true);
+    }
 }
