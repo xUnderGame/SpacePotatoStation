@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static ScriptableSeed;
 using static Plant;
 
 public class BaseTerrain : MonoBehaviour, IPointerClickHandler
@@ -15,8 +16,9 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        if (terrainSB == null) terrainSB = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
-        
+        if (terrainSB == null) terrainSB = GameManager.Instance.sandyTerrain;
+        // if (terrainSB == null) terrainSB = GameManager.Instance.dirtTerrain;
+
         holder = transform.Find("PlantHolder");
         ren = GetComponent<Renderer>();
         growingPlant = null;
@@ -29,7 +31,24 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
     public void Plant(ScriptableSeed seed)
     {
         if (!available.Contains(seed) || growingPlant != null || seed == null) return;
-        growingPlant = Instantiate(GameManager.captusPrefab, holder);
+        switch(seed.plant)
+        {
+            case PlantTypes.Captus:
+                growingPlant = Instantiate(GameManager.captusPrefab, holder);
+                break;
+            case PlantTypes.Aqua:
+                growingPlant = Instantiate(GameManager.aquaPrefab, holder);
+                break;
+            case PlantTypes.Pepperoni:
+                growingPlant = Instantiate(GameManager.pepperoniPrefab, holder);
+                break;
+            case PlantTypes.Booster:
+                growingPlant = Instantiate(GameManager.boosterPrefab, holder);
+                break;
+            case PlantTypes.Spores:
+                growingPlant = Instantiate(GameManager.sporesPrefab, holder);
+                break;
+        }
             
         // Plants positions for better access
         growingPlant.terrainPosition = matrixPosition;
@@ -55,6 +74,7 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
     {
         if (growingPlant == null) return;
 
+        growingPlant.Disable();
         Destroy(growingPlant);
         growingPlant = null;
     }
@@ -91,6 +111,6 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
     {
         // TESTING TESTING TESTING TESTING TESTING TESTING 
         if (growingPlant != null) { growingPlant.status = Status.Completed; growingPlant.Effect(); }
-        else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CactusSeed"));
+        else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed"));
     }
 }

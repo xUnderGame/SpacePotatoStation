@@ -8,11 +8,18 @@ public class GameManager : MonoBehaviour
     // Public references //
     [HideInInspector] public static BaseTerrain terrainPrefab;
     [HideInInspector] public static Plant captusPrefab;
+    [HideInInspector] public static Plant aquaPrefab;
+    [HideInInspector] public static Plant pepperoniPrefab;
+    [HideInInspector] public static Plant boosterPrefab;
+    [HideInInspector] public static Plant sporesPrefab;
     [HideInInspector] public ScriptableTerrain sandyTerrain;
     [HideInInspector] public ScriptableTerrain dirtTerrain;
     [HideInInspector] public ScriptableTerrain gravelTerrain;
     [HideInInspector] public ScriptableTerrain swampTerrain;
     public GameObject TerrainInfo;
+    public int foodValue;
+    public int waterValue;
+    public int happyValue;
 
     private readonly int maxCapacity = 5;
     private List<List<BaseTerrain>> plot;
@@ -26,14 +33,22 @@ public class GameManager : MonoBehaviour
         // Get references
         terrainPrefab = Resources.Load<BaseTerrain>("Prefabs/Terrain");
         captusPrefab = Resources.Load<Plant>("Prefabs/Captus");
+        aquaPrefab = Resources.Load<Plant>("Prefabs/Aqua");
+        pepperoniPrefab = Resources.Load<Plant>("Prefabs/Pepperoni");
+        boosterPrefab = Resources.Load<Plant>("Prefabs/Booster");
+        sporesPrefab = Resources.Load<Plant>("Prefabs/Spores");
         sandyTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
         dirtTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/DirtTerrain");
         gravelTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/GravelTerrain");
         swampTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SwampTerrain");
 
-
         TerrainInfo = GameObject.Find("TerrainInfo");
         plotObject = GameObject.Find("Plot");
+
+        // Defaults
+        foodValue = 100;
+        waterValue = 50;
+        happyValue = 50;
 
         // Do plot
         if (TerrainInfo) TerrainInfo.SetActive(false);
@@ -82,5 +97,29 @@ public class GameManager : MonoBehaviour
     {
         if (pos[0] > maxCapacity || pos[0] < 0 || pos[1] > maxCapacity || pos[1] < 0) return null;
         return plot[pos[0]][pos[1]];
+    }
+
+    // Increases your water quantity
+    public void IncreaseWater(int value)
+    {
+        if (waterValue + value > 100) waterValue = 100;
+        else waterValue += value;
+        Debug.Log(waterValue);
+    }
+
+    // Increases your food quantity
+    public void IncreaseFood(int value)
+    {
+        if (foodValue + value > 100) foodValue = 100;
+        else foodValue += value;
+        Debug.Log(foodValue);
+    }
+
+    // Increases your happiness quantity
+    public void IncreaseHappy(int value)
+    {
+        if (happyValue + value > 100) happyValue = 100;
+        else happyValue += value;
+        Debug.Log(happyValue);
     }
 }

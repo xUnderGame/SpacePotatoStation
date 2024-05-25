@@ -1,9 +1,9 @@
-public class Captus : Plant
+public class Aqua : Plant
 {
     internal override void Start()
     {
         base.Start();
-        completedGrowthTime = 3;
+        completedGrowthTime = 5;
         deathTimer = -1;
     }
     public override void Interact()
@@ -20,26 +20,21 @@ public class Captus : Plant
         // Do something else if you are being triggered by a daily event
         if (daily)
         {
+            GameManager.Instance.IncreaseWater(3 + harvestBoost);
             return;
         }
 
         // Status stuff
         switch (status)
         {
-            case Status.Initial:
-                foreach (var pos in positionsHorizontal)
-                {
-                    terrain = GameManager.Instance.GetTerrain(pos);
-                    if (terrain) terrain.ChangeTerrain(GameManager.Instance.dirtTerrain);
-                }
-                break;
-
             case Status.Completed:
-                foreach (var pos in positionsVertical)
-                {
-                    terrain = GameManager.Instance.GetTerrain(pos);
-                    if (terrain) terrain.ChangeTerrain(GameManager.Instance.dirtTerrain);
-                }
+                // Gravel on top
+                terrain = GameManager.Instance.GetTerrain(positionsVertical[0]);
+                if (terrain) terrain.ChangeTerrain(GameManager.Instance.gravelTerrain);
+
+                // Swamp below
+                terrain = GameManager.Instance.GetTerrain(positionsVertical[1]);
+                if (terrain) terrain.ChangeTerrain(GameManager.Instance.swampTerrain);
                 break;
 
             default:
