@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static BaseTerrain terrainPrefab;
     [HideInInspector] public static Plant plantPrefab;
 
-    private GameObject plot;
+    private readonly int maxCapacity = 5;
+    private List<List<BaseTerrain>> plot;
+    private GameObject plotObject;
 
     private void Awake()
     {
@@ -18,27 +19,39 @@ public class GameManager : MonoBehaviour
         // Get references
         terrainPrefab = Resources.Load<BaseTerrain>("Prefabs/Terrain");
         plantPrefab = Resources.Load<Plant>("Prefabs/Plant");
-        plot = GameObject.Find("Plot");
+        plotObject = GameObject.Find("Plot");
 
+        // Do plot
+        plot = new(capacity: maxCapacity);
         GeneratePlot();
     }
 
     // Creates the game's plot
     public void GeneratePlot()
     {
-        // Z Row
-        for (int zValue = 0; zValue > -6; zValue--)
+        // Z axis
+        for (int zValue = 0; zValue < 6; zValue++)
         {
-            // Create a separator gameobject
-            GameObject row = new($"Row {zValue * -1 + 1}");
-            row.transform.SetParent(plot.transform);
-            row.transform.position = plot.transform.position;
+            // Create a row
+            GameObject row = new($"Row {zValue + 1}");
+            row.transform.SetParent(plotObject.transform);
+            row.transform.position = plotObject.transform.position;
+            List<BaseTerrain> genRow = new(capacity: maxCapacity);
 
-            // Genreate the rest of the row
+            // Generate the rest of them
             for (int xValue = 0; xValue < 6; xValue++)
             {
-                Instantiate(terrainPrefab, new Vector3(xValue, 0, zValue), Quaternion.identity, row.transform);
+                int[] pos = { zValue, xValue };
+                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(xValue, 0, zValue), Quaternion.identity, row.transform);
+                generatedTerrain.gameObject.name = $"Terrain ({zValue}, {xValue})";
+
+                // Add the Terrain to the generated row
+                generatedTerrain.matrixPosition = pos;
+                genRow.Add(generatedTerrain);
             }
+
+            // Add to the plot
+            plot.Add(genRow);
         }
     }
 }

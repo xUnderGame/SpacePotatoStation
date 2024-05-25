@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseTerrain : MonoBehaviour
-{
+{   
     [HideInInspector] public List<ScriptableSeed> available;
     [HideInInspector] public Plant growingPlant;
 
+    internal int[] matrixPosition;
     private ScriptableTerrain terrainSB = null;
     private Transform holder;
     private Renderer ren;
@@ -13,12 +14,13 @@ public class BaseTerrain : MonoBehaviour
     private void Start()
     {
         if (terrainSB == null) terrainSB = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/Sand");
+        
         holder = transform.Find("PlantHolder");
         ren = GetComponent<Renderer>();
         growingPlant = null;
         LoadScriptable();
 
-        Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CactusSeed"));
+        // Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CactusSeed"));
     }
 
     // Plants a plant onto the terrain
