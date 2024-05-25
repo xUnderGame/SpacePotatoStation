@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    public enum Status { Initial, Completed, Decay }
+    public enum Status { Initial, Growing, Completed, Decay }
     [HideInInspector] public Status status;
     [HideInInspector] public int completedGrowthTime;
     [HideInInspector] public int currentGrowthTime;
