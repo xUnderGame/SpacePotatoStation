@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f7e89648c2f6a5458af0b1f9e043e6c, type: 3}
-  m_Name: Sand
+  m_Name: SandTerrain
   m_EditorClassIdentifier: 
   available:
   - {fileID: 11400000, guid: 2a30fab4ff441034ebb43747a1b6f307, type: 2}

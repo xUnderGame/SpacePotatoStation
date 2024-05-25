@@ -27,11 +27,15 @@ public class GameManager : MonoBehaviour
     }
 
     // Creates the game's plot
-    public void GeneratePlot()
+    public void GeneratePlot(float gridIncrement = 0.75f)
     {
+        float yOffset = 0f;
+
         // Z axis
         for (int zValue = 0; zValue < 6; zValue++)
         {
+            float xOffset = 0f;
+
             // Create a row
             GameObject row = new($"Row {zValue + 1}");
             row.transform.SetParent(plotObject.transform);
@@ -42,13 +46,16 @@ public class GameManager : MonoBehaviour
             for (int xValue = 0; xValue < 6; xValue++)
             {
                 int[] pos = { zValue, xValue };
-                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(xValue, 0, zValue), Quaternion.identity, row.transform);
+                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(row.transform.position.x + xValue + xOffset, row.transform.position.y, row.transform.position.z + zValue + yOffset), row.transform.rotation, row.transform);
                 generatedTerrain.gameObject.name = $"Terrain ({zValue}, {xValue})";
 
                 // Add the Terrain to the generated row
                 generatedTerrain.matrixPosition = pos;
                 genRow.Add(generatedTerrain);
+
+                xOffset += gridIncrement;
             }
+            yOffset += gridIncrement;
 
             // Add to the plot
             plot.Add(genRow);

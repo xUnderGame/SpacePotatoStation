@@ -13,7 +13,7 @@ public class BaseTerrain : MonoBehaviour
 
     private void Start()
     {
-        if (terrainSB == null) terrainSB = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/Sand");
+        if (terrainSB == null) terrainSB = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
         
         holder = transform.Find("PlantHolder");
         ren = GetComponent<Renderer>();
