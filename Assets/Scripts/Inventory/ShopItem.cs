@@ -13,6 +13,7 @@ public class ShopItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler
     public Image background;
     public TextMeshProUGUI amount;
 
+    public SeedPanel seedPanel;
     private void Start() 
     {
         inventoryManager = GameObject.FindWithTag("GameManager").GetComponent<Inventory>();

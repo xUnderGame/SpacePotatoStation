@@ -26,10 +26,15 @@ public class GameManager : MonoBehaviour
     private readonly int maxCapacity = 5;
     private List<List<BaseTerrain>> plot;
     private GameObject plotObject;
+    private Inventory inv;
 
     public int nTurns, maxTurns;
     public List<string> characters;
+    public ScriptableSeed selectedSeed;
+    public int selectedCount;
     public int nAliens;
+
+    public int dayspassed;
 
 
     private void Awake()
@@ -52,6 +57,8 @@ public class GameManager : MonoBehaviour
 
         TerrainInfo = GameObject.Find("TerrainInfo");
         plotObject = GameObject.Find("Plot");
+        inv = GetComponent<Inventory>();
+        selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed");
 
         // Defaults
         foodValue = 100;
@@ -65,6 +72,42 @@ public class GameManager : MonoBehaviour
 
         //Set maxTurns
         ResetTurns();
+    }
+
+    public void Update()
+    { 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed");
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/AquaSeed");
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/BoosterSeed");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CarnivoreSeed");
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/PepperoniSeed");
+        }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            selectedSeed = Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/SporesSeed");
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SubstractTurns(1);
+        }
+        if (nTurns<=0)
+        {
+            ResetTurns();
+        }
     }
 
     // Creates the game's plot
@@ -118,6 +161,7 @@ public class GameManager : MonoBehaviour
     {
         maxTurns = nAliens;
         nTurns = maxTurns;
+        dayspassed++;
     }
 
     // Funciones control de aliens
@@ -143,6 +187,8 @@ public class GameManager : MonoBehaviour
     {
         if (waterValue + value > 100) waterValue = 100;
         else waterValue += value;
+
+        GameUI.Instance.UpdateWaterBar(waterValue / 100);
     }
 
     // Increases your food quantity
@@ -150,6 +196,8 @@ public class GameManager : MonoBehaviour
     {
         if (foodValue + value > 100) foodValue = 100;
         else foodValue += value;
+
+        GameUI.Instance.UpdateHungerBar(foodValue / 100);
     }
 
     // Increases your happiness quantity
@@ -157,5 +205,7 @@ public class GameManager : MonoBehaviour
     {
         if (happyValue + value > 100) happyValue = 100;
         else happyValue += value;
+
+        GameUI.Instance.UpdateHappyBar(happyValue / 100);
     }
 }

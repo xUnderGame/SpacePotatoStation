@@ -33,7 +33,6 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 
     private void Update() {
         float distance = Vector3.Distance(agent.destination, agent.gameObject.transform.position);
-        Debug.Log($"OBJETIVO {distance}");
 
         if (distance < 1.2f) {
             agent.gameObject.GetComponent<Player>().ActionDone();
@@ -125,12 +124,14 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData data)
     {
+        Debug.Log(GameManager.Instance.selectedSeed);
+        Plant(GameManager.Instance.selectedSeed);
+
         // NAVMESH MOVEMENT
         if (!agent.pathPending && !agent.hasPath)
         {
             // TESTING TESTING TESTING TESTING TESTING TESTING 
-            if (growingPlant != null) { growingPlant.status = Status.Completed; growingPlant.Effect(); }
-            else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed"));
+            if (growingPlant != null) Debug.Log("h");
 
             agent.destination = data.pointerPressRaycast.worldPosition;
         }
