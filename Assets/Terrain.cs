@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using static Plant;
 
-public class BaseTerrain : MonoBehaviour
+public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 {   
     [HideInInspector] public List<ScriptableSeed> available;
     [HideInInspector] public Plant growingPlant;
@@ -27,8 +29,25 @@ public class BaseTerrain : MonoBehaviour
     public void Plant(ScriptableSeed seed)
     {
         if (!available.Contains(seed) || growingPlant != null || seed == null) return;
+        growingPlant = Instantiate(GameManager.captusPrefab, holder);
+            
+        // Plants positions for better access
+        growingPlant.terrainPosition = matrixPosition;
+        growingPlant.positionsVertical.Add(new int[] { matrixPosition[0] + 1, matrixPosition[1] });
+        growingPlant.positionsVertical.Add(new int[] { matrixPosition[0] - 1, matrixPosition[1] });
+        growingPlant.positionsHorizontal.Add(new int[] { matrixPosition[0], matrixPosition[1] - 1 });
+        growingPlant.positionsHorizontal.Add(new int[] { matrixPosition[0], matrixPosition[1] + 1 });
+        growingPlant.positionsAround.Add(new int[] { matrixPosition[0] + 1, matrixPosition[1] - 1 });
+        growingPlant.positionsAround.Add(new int[] { matrixPosition[0] + 1, matrixPosition[1] + 1 });
+        growingPlant.positionsAround.Add(new int[] { matrixPosition[0] - 1, matrixPosition[1] - 1 });
+        growingPlant.positionsAround.Add(new int[] { matrixPosition[0] - 1, matrixPosition[1] + 1 });
+        growingPlant.positionsAround.Add(growingPlant.positionsVertical[0]);
+        growingPlant.positionsAround.Add(growingPlant.positionsVertical[1]);
+        growingPlant.positionsAround.Add(growingPlant.positionsHorizontal[0]);
+        growingPlant.positionsAround.Add(growingPlant.positionsHorizontal[1]);
 
-        Instantiate(GameManager.plantPrefab, holder);
+        // Run default (on creation) effect
+        growingPlant.Effect(); 
     }
 
     // Removes current plant from the terrain
@@ -38,6 +57,14 @@ public class BaseTerrain : MonoBehaviour
 
         Destroy(growingPlant);
         growingPlant = null;
+    }
+
+    // Changes a terrain's type
+    public void ChangeTerrain(ScriptableTerrain newSB)
+    {
+        if (newSB == null || growingPlant != null || terrainSB == newSB) return;
+        terrainSB = newSB;
+        LoadScriptable();
     }
 
     // Loads the scriptable attached to this component
@@ -58,5 +85,12 @@ public class BaseTerrain : MonoBehaviour
     private void OnMouseExit()
     {
         GameManager.Instance.TerrainInfo.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData data)
+    {
+        // TESTING TESTING TESTING TESTING TESTING TESTING 
+        if (growingPlant != null) { growingPlant.status = Status.Completed; growingPlant.Effect(); }
+        else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CactusSeed"));
     }
 }

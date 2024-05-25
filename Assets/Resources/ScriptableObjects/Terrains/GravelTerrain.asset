@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473e57f91a6694f4889ffe619bbb82af, type: 3}
-  m_Name: CactusPlant
+  m_Script: {fileID: 11500000, guid: 3f7e89648c2f6a5458af0b1f9e043e6c, type: 3}
+  m_Name: GravelTerrain
   m_EditorClassIdentifier: 
-  sprites: []
-  effects: []
-  growthTime: 5
+  available: []
+  material: {fileID: 2100000, guid: d973a506d3725c040b05fd051532a864, type: 2}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DirtTerrain
   m_EditorClassIdentifier: 
   available: []
-  material: {fileID: 2100000, guid: b42ef644e4df27944815566c7097c322, type: 2}
+  material: {fileID: 2100000, guid: fd880d4f504fd654d806571fe4169328, type: 2}

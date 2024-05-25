@@ -1,12 +1,17 @@
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+    // Public references //
     [HideInInspector] public static BaseTerrain terrainPrefab;
-    [HideInInspector] public static Plant plantPrefab;
+    [HideInInspector] public static Plant captusPrefab;
+    [HideInInspector] public ScriptableTerrain sandyTerrain;
+    [HideInInspector] public ScriptableTerrain dirtTerrain;
+    [HideInInspector] public ScriptableTerrain gravelTerrain;
+    [HideInInspector] public ScriptableTerrain swampTerrain;
     public GameObject TerrainInfo;
 
     private readonly int maxCapacity = 5;
@@ -20,7 +25,13 @@ public class GameManager : MonoBehaviour
 
         // Get references
         terrainPrefab = Resources.Load<BaseTerrain>("Prefabs/Terrain");
-        plantPrefab = Resources.Load<Plant>("Prefabs/Plant");
+        captusPrefab = Resources.Load<Plant>("Prefabs/Captus");
+        sandyTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
+        dirtTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/DirtTerrain");
+        gravelTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/GravelTerrain");
+        swampTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SwampTerrain");
+
+
         TerrainInfo = GameObject.Find("TerrainInfo");
         plotObject = GameObject.Find("Plot");
 
@@ -64,5 +75,12 @@ public class GameManager : MonoBehaviour
             // Add to the plot
             plot.Add(genRow);
         }
+    }
+
+    // Get a terrain in the matrix
+    public BaseTerrain GetTerrain(int[] pos)
+    {
+        if (pos[0] > maxCapacity || pos[0] < 0 || pos[1] > maxCapacity || pos[1] < 0) return null;
+        return plot[pos[0]][pos[1]];
     }
 }
