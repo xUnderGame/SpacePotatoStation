@@ -1,10 +1,12 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TerrainUI : MonoBehaviour
 {
     // Start is called before the first frame update
     private Camera _cam;
+    public RawImage icon;
     public TextMeshProUGUI terrainStatus;
     public TextMeshProUGUI plantStatus;
     public TextMeshProUGUI growthProgress;
