@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SporesSeed
   m_EditorClassIdentifier: 
   plant: 4
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: f4f4c708ce6ef334b8ac3c6ce7e7a33a, type: 3}
   description: Spores... zzz
-  price: 0
+  price: 22

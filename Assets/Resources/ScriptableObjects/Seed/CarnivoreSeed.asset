@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e37983765f8e6694ebe87be0c6729594, type: 3}
-  m_Name: PepperoniSeed
+  m_Name: CarnivoreSeed
   m_EditorClassIdentifier: 
-  plant: 2
-  icon: {fileID: 2800000, guid: f5bcc0e8fe149894584d5f597c3b8c58, type: 3}
-  description: Pizza!
-  price: 11
+  plant: 5
+  icon: {fileID: 2800000, guid: 188b3ca6a45227047af0bdf8885dad30, type: 3}
+  description: yum
+  price: 9
