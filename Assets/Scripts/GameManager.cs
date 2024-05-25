@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static Plant pepperoniPrefab;
     [HideInInspector] public static Plant boosterPrefab;
     [HideInInspector] public static Plant sporesPrefab;
+    [HideInInspector] public static Plant carnivorePrefab;
     [HideInInspector] public ScriptableTerrain sandyTerrain;
     [HideInInspector] public ScriptableTerrain dirtTerrain;
     [HideInInspector] public ScriptableTerrain gravelTerrain;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
         pepperoniPrefab = Resources.Load<Plant>("Prefabs/Plants/Pepperoni");
         boosterPrefab = Resources.Load<Plant>("Prefabs/Plants/Booster");
         sporesPrefab = Resources.Load<Plant>("Prefabs/Plants/Spores");
+        carnivorePrefab = Resources.Load<Plant>("Prefabs/Plants/Carnivora");
         sandyTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
         dirtTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/DirtTerrain");
         gravelTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/GravelTerrain");

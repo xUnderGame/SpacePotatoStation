@@ -73,7 +73,7 @@ public class Booster : Plant
     // Disable effect
     public override void Disable()
     {
-        status = Status.Decay;
+        ChangeStatus(Status.Decay);
         foreach (var plant in hasBeenDefaultBoosted) { plant.isProtected = false; }
         foreach (var plant in hasBeenCompleteBoosted) { plant.isProtected = false; }
     }

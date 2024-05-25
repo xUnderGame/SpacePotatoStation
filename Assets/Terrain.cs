@@ -48,6 +48,9 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
             case PlantTypes.Spores:
                 growingPlant = Instantiate(GameManager.sporesPrefab, holder);
                 break;
+            case PlantTypes.Carnivore:
+                growingPlant = Instantiate(GameManager.carnivorePrefab, holder);
+                break;
         }
             
         // Plants positions for better access
@@ -110,7 +113,7 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData data)
     {
         // TESTING TESTING TESTING TESTING TESTING TESTING 
-        if (growingPlant != null) { growingPlant.ChangeStatus(Status.Completed); growingPlant.Effect(); }
+        if (growingPlant != null) { growingPlant.ChangeStatus(Status.Decay); growingPlant.Effect(); }
         else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed"));
     }
 }
