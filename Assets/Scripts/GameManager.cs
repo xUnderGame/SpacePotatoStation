@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class GameManager : MonoBehaviour
     private readonly int maxCapacity = 5;
     private List<List<BaseTerrain>> plot;
     private GameObject plotObject;
+
+    public int nTurns, maxTurns;
+    public int nAliens;
+
 
     private void Awake()
     {
@@ -28,6 +33,9 @@ public class GameManager : MonoBehaviour
         if (TerrainInfo) TerrainInfo.SetActive(false);
         plot = new(capacity: maxCapacity);
         GeneratePlot();
+
+        //Set maxTurns
+        ResetTurns();
     }
 
     // Creates the game's plot
@@ -64,5 +72,33 @@ public class GameManager : MonoBehaviour
             // Add to the plot
             plot.Add(genRow);
         }
+    }
+
+    //Funciones control de turnos
+    public void AddTurns(int num)
+    {
+        nTurns = nTurns + num;
+    }
+
+    public void SustractTurns(int num)
+    {
+        nTurns = nTurns - num;
+    }
+
+    public void ResetTurns()
+    {
+        maxTurns = nAliens;
+        nTurns = maxTurns;
+    }
+
+    //Funciones control de aliens
+    public void AddAliens(int num)
+    {
+        nAliens = nAliens + num;
+    }
+
+    public void SustractAliens(int num)
+    {
+        nAliens = nAliens - num;
     }
 }
