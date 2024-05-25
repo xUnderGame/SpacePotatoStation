@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f7e89648c2f6a5458af0b1f9e043e6c, type: 3}
-  m_Name: GrassTerrain
+  m_Name: SwampTerrain
   m_EditorClassIdentifier: 
-  available: []
-  material: {fileID: 2100000, guid: 6b3cea29958f2ab4eb622465c89d01bd, type: 2}
+  available:
+  - {fileID: 11400000, guid: 642ade0e194b7f04b89012c146921d0b, type: 2}
+  - {fileID: 11400000, guid: 9ad69d1c9675d514989a61dfc411d978, type: 2}
+  material: {fileID: 2100000, guid: ae9b29b5d3b2b3e478651c10a2a89477, type: 2}
