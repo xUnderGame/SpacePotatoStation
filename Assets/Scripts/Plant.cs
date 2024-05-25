@@ -16,7 +16,6 @@ public abstract class Plant : MonoBehaviour
     internal bool isProtected = false;
     internal int harvestBoost = 0;
     internal int deathTimer = -1;
-    internal Renderer ren;
 
     // Models //
     internal GameObject stageOne;
@@ -28,7 +27,6 @@ public abstract class Plant : MonoBehaviour
         stageOne = transform.Find("Initial").gameObject;
         stageTwo = transform.Find("Growing").gameObject;
         stageThree = transform.Find("Completed").gameObject;
-        ren = GetComponent<Renderer>();
         status = Status.Initial;
         currentGrowthTime = 0;
     }
@@ -47,7 +45,13 @@ public abstract class Plant : MonoBehaviour
     {
         status = newStatus;
 
-        if (newStatus == Status.Decay) { ren.material.color = new Color(0.25f, 0.25f, 0.25f); return; }
+        if (newStatus == Status.Decay)
+        {
+            if (stageOne.activeSelf) stageOne.GetComponent<Renderer>().material.color = new Color(0.25f, 0.25f, 0.25f);
+            if (stageTwo.activeSelf) stageTwo.GetComponent<Renderer>().material.color = new Color(0.25f, 0.25f, 0.25f);
+            if (stageThree.activeSelf) stageThree.GetComponent<Renderer>().material.color = new Color(0.25f, 0.25f, 0.25f);
+            return;
+        }
 
         // Cycle through models
         stageOne.SetActive(false);
