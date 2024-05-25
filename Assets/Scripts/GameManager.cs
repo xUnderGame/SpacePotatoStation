@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private GameObject plotObject;
 
     public int nTurns, maxTurns;
+    public List<string> characters;
     public int nAliens;
 
 

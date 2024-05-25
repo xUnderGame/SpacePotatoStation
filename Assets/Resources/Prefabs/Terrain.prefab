@@ -121,6 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   available: []
   growingPlant: {fileID: 0}
+  agent: {fileID: 0}
+  initialPos: 09000000f7ffffff
 --- !u!1 &5472942409482081611
 GameObject:
   m_ObjectHideFlags: 0

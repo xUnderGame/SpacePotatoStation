@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.AI;
 using static ScriptableSeed;
 using static Plant;
 
@@ -8,6 +9,8 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 {   
     [HideInInspector] public List<ScriptableSeed> available;
     [HideInInspector] public Plant growingPlant;
+    public NavMeshAgent agent;
+    [SerializeField] public int[] initialPos;
 
     internal int[] matrixPosition;
     private ScriptableTerrain terrainSB = null;
@@ -16,6 +19,7 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
+        agent = GameObject.FindWithTag("Player").GetComponent<NavMeshAgent>();
         if (terrainSB == null) terrainSB = GameManager.Instance.sandyTerrain;
         // if (terrainSB == null) terrainSB = GameManager.Instance.dirtTerrain;
 
@@ -25,6 +29,15 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
         LoadScriptable();
 
         // Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CactusSeed"));
+    }
+
+    private void Update() {
+        float distance = Vector3.Distance(agent.destination, agent.gameObject.transform.position);
+        Debug.Log($"OBJETIVO {distance}");
+
+        if (distance < 1.2f) {
+            agent.gameObject.GetComponent<Player>().ActionDone();
+        }
     }
 
     // Plants a plant onto the terrain
@@ -109,8 +122,15 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData data)
     {
-        // TESTING TESTING TESTING TESTING TESTING TESTING 
-        if (growingPlant != null) { growingPlant.status = Status.Completed; growingPlant.Effect(); }
-        else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed"));
+        // NAVMESH MOVEMENT
+        if (!agent.pathPending && !agent.hasPath)
+        {
+            // TESTING TESTING TESTING TESTING TESTING TESTING 
+            if (growingPlant != null) { growingPlant.status = Status.Completed; growingPlant.Effect(); }
+            else Plant(Resources.Load<ScriptableSeed>("ScriptableObjects/Seed/CaptusSeed"));
+
+            agent.destination = data.pointerPressRaycast.worldPosition;
+        }
     }
+    
 }

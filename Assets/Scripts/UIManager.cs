@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour {
         gameUI.SetActive(true);
         nameWindow.SetActive(false);
         shopWindow.SetActive(false);
+
+        // ActivateName();
     }
 
     public void ActivateShop() 
@@ -23,5 +25,17 @@ public class UIManager : MonoBehaviour {
     {
         background.SetActive(false);
         shopWindow.SetActive(false);
+    }
+
+    public void ActivateName()
+    {
+        background.SetActive(true);
+        nameWindow.SetActive(true);
+    }
+
+    public void DeactivateName()
+    {
+        background.SetActive(false);
+        nameWindow.SetActive(false);
     }
 }
