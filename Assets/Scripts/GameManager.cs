@@ -37,11 +37,11 @@ public class GameManager : MonoBehaviour
 
         // Get references
         terrainPrefab = Resources.Load<BaseTerrain>("Prefabs/Terrain");
-        captusPrefab = Resources.Load<Plant>("Prefabs/Captus");
-        aquaPrefab = Resources.Load<Plant>("Prefabs/Aqua");
-        pepperoniPrefab = Resources.Load<Plant>("Prefabs/Pepperoni");
-        boosterPrefab = Resources.Load<Plant>("Prefabs/Booster");
-        sporesPrefab = Resources.Load<Plant>("Prefabs/Spores");
+        captusPrefab = Resources.Load<Plant>("Prefabs/Plants/Captus");
+        aquaPrefab = Resources.Load<Plant>("Prefabs/Plants/Aqua");
+        pepperoniPrefab = Resources.Load<Plant>("Prefabs/Plants/Pepperoni");
+        boosterPrefab = Resources.Load<Plant>("Prefabs/Plants/Booster");
+        sporesPrefab = Resources.Load<Plant>("Prefabs/Plants/Spores");
         sandyTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
         dirtTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/DirtTerrain");
         gravelTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/GravelTerrain");
@@ -103,12 +103,12 @@ public class GameManager : MonoBehaviour
     // Funciones control de turnos
     public void AddTurns(int num)
     {
-        nTurns = nTurns + num;
+        nTurns += num;
     }
 
     public void SustractTurns(int num)
     {
-        nTurns = nTurns - num;
+        nTurns -= num;
     }
 
     public void ResetTurns()
@@ -120,12 +120,12 @@ public class GameManager : MonoBehaviour
     // Funciones control de aliens
     public void AddAliens(int num)
     {
-        nAliens = nAliens + num;
+        nAliens += num;
     }
 
     public void SustractAliens(int num)
     {
-        nAliens = nAliens - num;
+        nAliens -= num;
     }
 
     // Get a terrain in the matrix
