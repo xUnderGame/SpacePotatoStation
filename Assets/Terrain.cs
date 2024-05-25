@@ -61,6 +61,9 @@ public class BaseTerrain : MonoBehaviour, IPointerClickHandler
             case PlantTypes.Spores:
                 growingPlant = Instantiate(GameManager.sporesPrefab, holder);
                 break;
+            case PlantTypes.Carnivore:
+                growingPlant = Instantiate(GameManager.carnivorePrefab, holder);
+                break;
         }
             
         // Plants positions for better access

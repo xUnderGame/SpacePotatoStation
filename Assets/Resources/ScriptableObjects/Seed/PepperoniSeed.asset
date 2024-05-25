@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PepperoniSeed
   m_EditorClassIdentifier: 
   plant: 2
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: f5bcc0e8fe149894584d5f597c3b8c58, type: 3}
   description: Pizza!
-  price: 0
+  price: 11

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public static Plant pepperoniPrefab;
     [HideInInspector] public static Plant boosterPrefab;
     [HideInInspector] public static Plant sporesPrefab;
+    [HideInInspector] public static Plant carnivorePrefab;
     [HideInInspector] public ScriptableTerrain sandyTerrain;
     [HideInInspector] public ScriptableTerrain dirtTerrain;
     [HideInInspector] public ScriptableTerrain gravelTerrain;
@@ -38,11 +39,12 @@ public class GameManager : MonoBehaviour
 
         // Get references
         terrainPrefab = Resources.Load<BaseTerrain>("Prefabs/Terrain");
-        captusPrefab = Resources.Load<Plant>("Prefabs/Captus");
-        aquaPrefab = Resources.Load<Plant>("Prefabs/Aqua");
-        pepperoniPrefab = Resources.Load<Plant>("Prefabs/Pepperoni");
-        boosterPrefab = Resources.Load<Plant>("Prefabs/Booster");
-        sporesPrefab = Resources.Load<Plant>("Prefabs/Spores");
+        captusPrefab = Resources.Load<Plant>("Prefabs/Plants/Captus");
+        aquaPrefab = Resources.Load<Plant>("Prefabs/Plants/Aqua");
+        pepperoniPrefab = Resources.Load<Plant>("Prefabs/Plants/Pepperoni");
+        boosterPrefab = Resources.Load<Plant>("Prefabs/Plants/Booster");
+        sporesPrefab = Resources.Load<Plant>("Prefabs/Plants/Spores");
+        carnivorePrefab = Resources.Load<Plant>("Prefabs/Plants/Carnivora");
         sandyTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/SandTerrain");
         dirtTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/DirtTerrain");
         gravelTerrain = Resources.Load<ScriptableTerrain>("ScriptableObjects/Terrains/GravelTerrain");
@@ -85,7 +87,7 @@ public class GameManager : MonoBehaviour
             for (int xValue = 0; xValue < 6; xValue++)
             {
                 int[] pos = { zValue, xValue };
-                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(row.transform.position.x + xValue + xOffset, row.transform.position.y, row.transform.position.z + zValue + yOffset), row.transform.rotation, row.transform);
+                BaseTerrain generatedTerrain = Instantiate(terrainPrefab, new Vector3(row.transform.position.x + xValue + xOffset, row.transform.position.y, row.transform.position.z + zValue + yOffset), Quaternion.Euler(-90, 0, 0), row.transform);
                 generatedTerrain.gameObject.name = $"Terrain ({zValue}, {xValue})";
 
                 // Add the Terrain to the generated row
@@ -104,12 +106,12 @@ public class GameManager : MonoBehaviour
     // Funciones control de turnos
     public void AddTurns(int num)
     {
-        nTurns = nTurns + num;
+        nTurns += num;
     }
 
     public void SustractTurns(int num)
     {
-        nTurns = nTurns - num;
+        nTurns -= num;
     }
 
     public void ResetTurns()
@@ -121,12 +123,12 @@ public class GameManager : MonoBehaviour
     // Funciones control de aliens
     public void AddAliens(int num)
     {
-        nAliens = nAliens + num;
+        nAliens += num;
     }
 
     public void SustractAliens(int num)
     {
-        nAliens = nAliens - num;
+        nAliens -= num;
     }
 
     // Get a terrain in the matrix
@@ -141,7 +143,6 @@ public class GameManager : MonoBehaviour
     {
         if (waterValue + value > 100) waterValue = 100;
         else waterValue += value;
-        Debug.Log(waterValue);
     }
 
     // Increases your food quantity
@@ -149,7 +150,6 @@ public class GameManager : MonoBehaviour
     {
         if (foodValue + value > 100) foodValue = 100;
         else foodValue += value;
-        Debug.Log(foodValue);
     }
 
     // Increases your happiness quantity
@@ -157,6 +157,5 @@ public class GameManager : MonoBehaviour
     {
         if (happyValue + value > 100) happyValue = 100;
         else happyValue += value;
-        Debug.Log(happyValue);
     }
 }

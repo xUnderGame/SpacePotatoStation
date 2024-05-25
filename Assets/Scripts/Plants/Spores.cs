@@ -53,7 +53,7 @@ public class Spores : Plant
     // Disable effect
     public override void Disable()
     {
-        status = Status.Decay;
+        ChangeStatus(Status.Decay);
         foreach (var plant in hasBeenProtected)
         {
             plant.isProtected = false;
