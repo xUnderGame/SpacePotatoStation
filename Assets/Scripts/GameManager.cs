@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     [HideInInspector] public static BaseTerrain terrainPrefab;
     [HideInInspector] public static Plant plantPrefab;
+    public GameObject TerrainInfo;
 
     private readonly int maxCapacity = 5;
     private List<List<BaseTerrain>> plot;
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
         // Get references
         terrainPrefab = Resources.Load<BaseTerrain>("Prefabs/Terrain");
         plantPrefab = Resources.Load<Plant>("Prefabs/Plant");
+        TerrainInfo = GameObject.Find("TerrainInfo");
         plotObject = GameObject.Find("Plot");
 
         // Do plot
