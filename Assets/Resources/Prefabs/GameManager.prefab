@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7183462378816497523}
   - component: {fileID: 6240027284669039361}
+  - component: {fileID: 2390057316150281141}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,5 +43,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd3fa91f18d7c854b9dce9a7475d17a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TerrainInfo: {fileID: 0}
+--- !u!114 &2390057316150281141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3293594432560753464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ff0450120208b4b8f62bdab28d6e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

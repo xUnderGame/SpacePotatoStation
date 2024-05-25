@@ -6,7 +6,7 @@ public class ScriptableSeed : ScriptableObject
 {
     public enum PlantTypes { Captus, Aqua, Pepperoni, Booster, Spores }
     public PlantTypes plant;
-    public Image icon;
+    public Texture icon;
     public string description;
     public float price;
 }
