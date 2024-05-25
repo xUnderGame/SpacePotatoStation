@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37983765f8e6694ebe87be0c6729594, type: 3}
-  m_Name: CactusSeed
+  m_Script: {fileID: 11500000, guid: 3f7e89648c2f6a5458af0b1f9e043e6c, type: 3}
+  m_Name: DirtTerrain
   m_EditorClassIdentifier: 
-  plant: {fileID: 11400000, guid: 1f6c1bac1838c804ab5cf763fbbc54f3, type: 2}
-  icon: {fileID: 0}
-  description: 
-  price: 0
+  available: []
+  material: {fileID: 2100000, guid: b42ef644e4df27944815566c7097c322, type: 2}
