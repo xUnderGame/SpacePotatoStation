@@ -126,7 +126,8 @@ public class GameManager : MonoBehaviour
     public void SustractAliens(int num)
     {
         nAliens = nAliens - num;
-        
+    }
+
     // Get a terrain in the matrix
     public BaseTerrain GetTerrain(int[] pos)
     {
