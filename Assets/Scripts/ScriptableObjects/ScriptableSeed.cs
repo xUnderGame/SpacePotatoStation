@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ScriptableSeed : ScriptableObject
 {
     public ScriptablePlant plant;
-    public Image icon;
+    public Texture icon;
     public string description;
     public float price;
 }

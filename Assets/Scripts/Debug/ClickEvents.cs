@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickEvents : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler {
-    public void OnPointerDown(PointerEventData eventData) 
+public class ClickEvents : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
+{
+    public UIManager uIManager;
+    public void OnPointerDown (PointerEventData eventData) 
     {
-        
+        uIManager.ActivateShop();   
     }
 
     public void OnPointerUp(PointerEventData eventData) {}
