@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class InventorySlot {
+    public ScriptableSeed type;
+    public int quantity;
+}
 public class Inventory : MonoBehaviour
 {
+    public List<InventorySlot> slots;
     // Start is called before the first frame update
     void Start()
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Seed", menuName = "SpacePotatoStation/Seed", order = 0)]
+[CreateAssetMenu(fileName = "ScriptableSeed", menuName = "SpacePotatoStation/ScriptableSeed", order = 0)]
 public class ScriptableSeed : ScriptableObject
 {
     public ScriptablePlant plant;
